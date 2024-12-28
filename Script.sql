@@ -66,13 +66,6 @@ create index idx_productos_2 on public.productos (id);
 create index idx_productos_3 on public.productos (categoria);
 create index idx_productos_4 on public.productos (descripcion);
 
-select t.fecha, t.ticket, t.eancode, p.descripcion, count(*) cant
-from public.tickets t
-inner join public.productos p on t.eancode = p.eancode and t.idcadena = p.idcadena
-group by t.fecha, t.ticket, t.eancode, p.descripcion
-having count(*) > 2
-order by 1;
-
 --Total de ventas por categoria
 select p.categoria, count(distinct t.ticket) cantidad_ventas
 from public.productos p
